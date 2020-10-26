@@ -1,11 +1,17 @@
-let arr = prompt("Hay nhap mot day so").split(",");
-arr = arr.map(Number);
-let s = 0;
-for (var i = 0; i < arr.length; i++) {
-    for (j = 0; j < arr.length && j !== i; j++) {
-        if (arr[i] == arr[j]) {
-            arr.splice(i, 1) && arr.splice(j, 1);
+let arr = prompt("nhap mang").split(",");
+arr = arr.map(x => Number(x));
+for (let i = 0; i < arr.length; i++) {
+    let check = false;
+    for (let j = i + 1; j < arr.length; j++) {
+        if(arr[i] == arr[j]){
+            check = true;
+            arr.splice(j,1);
+            j--;
         }
     }
-};
-alert(arr);
+    if(check){
+        arr.splice(i,1);
+        i--;
+    }   
+}
+console.log(arr);

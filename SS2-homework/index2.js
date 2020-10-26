@@ -3,7 +3,7 @@ class Company {
     establishedDate; //ngày thành lập
     country;// quốc gia
     businessType;// loại hình kinh doanh
-    employees;// là 1 mảng gồm các nhân viên
+    employees = [];// là 1 mảng gồm các nhân viên
     constructor(name, establishedDate, country, businessType, employees) {
         this.name = name;
         this.establishedDate = establishedDate;
@@ -12,10 +12,17 @@ class Company {
         this.employees = employees;
     };
     showCEO() {
-        console.log(`Giám đốc công ty là: "Nguyễn Hải Bình`);
+        console.log(this.employees);
+        this.employees.forEach(function(employee,index){
+            if(employee instanceof CEO){
+                console.log(`${index+1}.${employee.strategy}`)
+            }
+        })
     };//in ra console thông tin của CEO
     showAllEmployees() {
-        console.log(`Công ty bao gồm 3 employees là: Employee 1, Employee2, Employee3`);
+        this.employees.forEach(function (employee, index) {
+            console.log(`${index + 1}. ${employee.name}`)
+        });
     };// in ra console thông tin của tất cả nhân viên
     showMangers() {
         console.log(`Công ty bao gồm 5 quản lý là: QL1, QL2, QL3, QL4, QL5`);
@@ -60,12 +67,6 @@ class Staff extends Employee {
         this.experience = experience;
     };
 };
-let congty = new Company('MindX', "12/07/2020", "Việt Nam", "Giáo dục", "Employees");
-console.log(congty);
-congty.showCEO();
-congty.showAllEmployees();
-congty.showMangers();
-congty.showStaffs();
 let giamdoc = new CEO("Nguyễn Hải Bình", "Nam", "20", "HN", "Technological advantage");
 console.log(giamdoc);
 let employee1 = new Employee("Linh", "Nữ", 20, "TpHCM");
@@ -101,3 +102,8 @@ console.log(staff7);
 console.log(staff8);
 console.log(staff9);
 console.log(staff10);
+let employees = [giamdoc,quanly1, quanly2, quanly3, quanly4, quanly5, staff1, staff2, staff3, staff4, staff5, staff6, staff7, staff8, staff9, staff10];
+let congty = new Company('MindX', "12/07/2020", "Việt Nam", "Giáo dục", employees);
+console.log(congty);
+congty.showAllEmployees();
+congty.showCEO();
