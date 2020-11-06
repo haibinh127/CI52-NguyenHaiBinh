@@ -1,0 +1,12 @@
+.anime-photo {
+    display: flex;
+    width: 150px;
+    height:250 px;
+}
+.anime-name {
+    color: red;
+    font-size: 20px;
+}
+.anime-category {
+    border-width: 10px;
+}
