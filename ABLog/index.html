@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBEgEr6wihylE-i0cM2_PZ5JUH5rLWL0ZM",
+            authDomain: "projectmyblogci52.firebaseapp.com",
+            projectId: "projectmyblogci52",
+            storageBucket: "projectmyblogci52.appspot.com",
+            messagingSenderId: "1026430081372",
+            appId: "1:1026430081372:web:20e53a08fe2974e8410999"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"
+        integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+</head>
+
+<body id="mainBody" style="background-image: url(./image/picture1.jpg); margin: 0;">
+    <!-- <input-wrapper></input-wrapper> -->
+    <!-- <register-form></register-form> -->
+    <!-- <login-form></login-form> -->
+    <!-- <nav-bar></nav-bar> -->
+    <!-- <create-article-form></create-article-form> -->
+    <!-- <article-container></article-container> -->
+    <index-screen></index-screen>
+</body>
+
+<template id="input-wrapper-template">
+    <link rel="stylesheet" href="./css/input-wrapper.css">
+    <div id="input-wrapper">
+        <input type="text" id="input-main" placeholder="Tên đăng kí">
+        <div id="input-error"></div>
+    </div>
+</template>
+
+<template id="register-form-template">
+    <link rel="stylesheet" href="./css/register-form.css">
+    <form action="#" id="register-form" style="margin-left: 500px; margin-top: 100px" style="display: flex">
+        <h2 style="color: #6fb98f; margin-left: 65px; font-size: 50px;">Đăng ký</h2>
+        <input-wrapper id="name" label="Tên đăng ký" type="text"></input-wrapper>
+        <input-wrapper id="email" label="Email" type="email"></input-wrapper>
+        <input-wrapper id="password" label="Mật khẩu" type="password"></input-wrapper>
+        <input-wrapper id="password-confirmation" label="Xác nhận mật khẩu" type="password"></input-wrapper>
+        <button id="register-button" style="font-size: 20px; font-weight: bold; color: black">Đăng kí</button>
+        <div id="login-link" style="color:white">
+            Bạn đã có tài khoản ?
+            <a href="#/sign-in" style="color: #6FB98F;">Đăng nhập ngay</a>
+        </div>
+    </form>
+</template>
+
+<template id="login-form-template">
+    <link rel="stylesheet" href="./css/login-form.css">
+    <form action="#" id="login-form" style="margin-left: 500px; margin-top: 100px" style="display: flex">
+        <h2 style="color: #6fb98f; margin-left: 40px; font-size: 50px;">Đăng nhập</h2>
+        <input-wrapper id="email" Label="Email" type="email"></input-wrapper>
+        <input-wrapper id="password" Label="Mật khẩu" type="password"></input-wrapper>
+        <button id="login-button" style="font-size: 20px; font-weight: bold; color: black">Đăng nhập</button>
+        <div id="register-link" style="color: white">
+            Tôi chưa có tài khoản !
+            <a href="#/sign-up" style="color: #6FB98F"> Đăng kí ngay</a>
+        </div>
+    </form>
+</template>
+
+<template id="navbar-template">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <div id="navbar">
+        <div id="brand" style="justify-content: center;">
+            <img src="./image/picture4.png" id="brand-image">
+            <a id="brand-text">A-BLog</a>
+        </div>  
+        <div id="current-user-info" class="nav">
+            <a href="#" id="current-user-name"></a>
+            <a href="#" id="log-out">Đăng xuất</a>
+        </div>
+    </div>
+</template>
+
+<template id="article-container-template">
+    <link rel="stylesheet" href="./css/article-container.css">
+    <div id="article-container">
+        <div id="info">
+            <div id="owner"></div>
+            <div id="date-modified"></div>
+        </div>
+        <div id="article-content" style="color:white">
+            Ok
+        </div>
+        <div id="article-comments" style="color:white">
+            Ok ko ?
+        </div>
+        <div>
+            <input type="text" placeholder="Hãy bình luận gì đó !">
+            <button>Đăng</button>
+        </div>
+    </div>
+</template>
+
+<template id="create-article-form-template">
+    <link rel="stylesheet" href="css/create-article-form.css">
+    <form id="create-article-form">
+        <textarea id="content" placeholder="Bạn đang nghĩ gì"></textarea>
+        <button>Đăng</button>
+    </form>
+</template>
+
+<template id="article-list-template">
+    <!--hiển thị các story-->
+    <div id="article-list">
+    </div>
+</template>
+
+<template id="index-screen">
+    <nav-bar></nav-bar>
+    <create-story-form></create-story-form>
+    <article-list id="article-list"></article-list>
+</template>
+
+<script src="//unpkg.com/navigo@6"></script>
+<script src="./js/app.js" type="module"></script>
+<script src="js/route.js" type="module"></script>
+
+</html>

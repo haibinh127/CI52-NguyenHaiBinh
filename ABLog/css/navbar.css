@@ -1,0 +1,32 @@
+#navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+    background-color: #004445;
+}
+#brand-image{
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10%;
+}
+#brand-text{
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 20px;
+    font-size: 25px;
+    color:white;
+}
+.nav {
+    display: none;
+    align-items: center;
+}
+.nav > a{
+    font-weight: bold;
+    color: aqua;
+    text-decoration:none;
+    margin: 0px 20px;
+}
+.nav > a:hover{
+    color:white;
+}

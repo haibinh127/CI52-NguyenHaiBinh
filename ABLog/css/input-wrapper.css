@@ -1,0 +1,12 @@
+#input-main{
+    height: 35px;
+    width: 300px;
+    border-radius: 10px;
+    outline: none;
+    border-color: #6fb98f;
+    border-width: 5px;
+    color:black;
+}
+#input-wrapper {
+    margin-bottom: 15px;
+}
